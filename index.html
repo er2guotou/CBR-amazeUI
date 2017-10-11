@@ -1,0 +1,397 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cocktail</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<header data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-header-left am-header-nav">
+        <a href="#left-link" class="">
+
+
+            <i class="am-header-icon am-icon-home"></i>
+        </a>
+    </div>
+
+    <h1 class="am-header-title">
+        cocktail
+    </h1>
+
+    <div class="am-header-right am-header-nav">
+        <a href="#right-link" class="">
+
+            <i class="am-header-icon am-icon-bars"></i>
+        </a>
+    </div>
+</header>
+
+
+
+
+<nav data-am-widget="menu" class="am-menu  am-menu-stack">
+    <a href="javascript: void(0)" class="am-menu-toggle">
+        <i class="am-menu-toggle-icon am-icon-bars"></i>
+    </a>
+
+
+    <ul class="am-menu-nav am-avg-sm-1">
+        <li class="">
+            <a onclick="retrieve()" class="" >get recipe</a>
+        </li>
+        <li class="">
+            <a onclick="addrecipe()" class="" >add recipe</a>
+        </li>
+        <li class="">
+            <a onclick="addfood()" class="" >add food</a>
+        </li>
+    </ul>
+
+</nav>
+<div id="retrieve">
+    <div id="step1" class="am-g">
+   <h2>retreive recipe</h2>
+    <div class="am-u-sm-4">
+        <h3>1.do you like sweet?</h3>
+        <label class="am-radio">
+            <input type="radio" name="radio1" value="T" data-am-ucheck>
+            yes
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio1" value="F" data-am-ucheck >
+            no
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio1" value="I" data-am-ucheck checked>
+            ignore
+        </label>
+
+    </div>
+    <div class="am-u-sm-4">
+        <h3>2.do you like sour?</h3>
+        <label class="am-radio">
+            <input type="radio" name="radio2" value="T" data-am-ucheck>
+            yes
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio2" value="F" data-am-ucheck >
+            no
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio2" value="I" data-am-ucheck checked>
+            ignore
+        </label>
+    </div>
+    <div class="am-u-sm-4">
+        <h3>3.do you like alcohol?</h3>
+        <label class="am-radio">
+            <input type="radio" name="radio3" value="S" data-am-ucheck>
+            strong
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio3" value="L" data-am-ucheck>
+            light
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio3" value="N" data-am-ucheck checked>
+            no
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio3" value="I" data-am-ucheck checked>
+            ignore
+        </label>
+
+    </div>
+</div>
+    <div id="step2" >
+    <label>4.choose foods which you like?</label>
+    <div class="am-g">
+
+
+        <select multiple placeholder="choose foods" data-am-selected="{btnWidth: '90%',
+        btnSize: 'sm', btnStyle: 'success',maxHeight: 500,searchBox: 1}"  id="food-mutiselect"  maxchecked="5" >
+            <optgroup label="alcohol" id="like-select-alcohol">
+
+            </optgroup>
+            <optgroup label="juice" id="like-select-juice">
+
+            </optgroup>
+            <optgroup label="other" id="like-select-other">
+
+            </optgroup>
+
+        </select>
+    </div>
+<div id="js-selected-info"></div>
+</div>
+    <div id="step2-">
+        <label>5.choose foods which you dislike?</label>
+        <div class="am-g">
+
+
+            <select multiple placeholder="choose foods" data-am-selected="{btnWidth: '90%',
+        btnSize: 'sm', btnStyle: 'success',maxHeight: 500,searchBox: 1}"  id="food-mutiselect-dislike" maxchecked="5" >
+                <optgroup label="alcohol" id="dislike-select-alcohol">
+
+                </optgroup>
+                <optgroup label="juice" id="dislike-select-juice">
+
+                </optgroup>
+                <optgroup label="other" id="dislike-select-other">
+
+                </optgroup>
+
+            </select>
+        </div>
+
+    </div>
+    <div id="step3">
+        <label>6.set the limitation?</label>
+        <div class="am-form-group">
+            <label>minimum amount of foods:</label>
+            <input type="number" class="am-input-sm" id="minfood" placeholder="">
+        </div>
+        <div class="am-form-group">
+            <label>maximum amount of foods:</label>
+            <input type="number"  class="am-input-sm" id="maxfood" placeholder="">
+        </div>
+    </div>
+    <div id="retrievecontent" class="am-g">
+
+    </div>
+    <button type="button" class="am-btn am-btn-secondary" id="reBtn" style="margin-left: 45%" onclick="retrieveRecipe(this)">retrieve</button>
+</div>
+
+<div id="addfood" class="am-g" hidden="hidden">
+
+<h2 id="foodTitle">Add new food</h2>
+       <div class="am-form-group-lg">
+            <label>food name:</label>
+            <input type="text" class="" id="foodname" placeholder="input food name">
+        </div>
+    <div class="am-u-sm-6">
+        <h3>what kind of food?</h3>
+        <label class="am-radio">
+            <input type="radio" name="radio7" value="alcohol" data-am-ucheck>
+            Alcohol
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio7" value="juice" data-am-ucheck checked>
+            juice
+        </label>
+        <label class="am-radio">
+            <input type="radio" name="radio7" value="other" data-am-ucheck checked>
+            other
+        </label>
+
+    </div>
+        <div class="am-u-sm-6">
+            <h3>1.is it sweet?</h3>
+            <label class="am-radio">
+                <input type="radio" name="radio4" value="T" data-am-ucheck>
+                yes
+            </label>
+            <label class="am-radio">
+                <input type="radio" name="radio4" value="F" data-am-ucheck checked>
+                no
+            </label>
+
+        </div>
+        <div class="am-u-sm-6">
+            <h3>2.is it sour?</h3>
+            <label class="am-radio">
+                <input type="radio" name="radio5" value="T" data-am-ucheck>
+                yes
+            </label>
+            <label class="am-radio">
+                <input type="radio" name="radio5" value="F" data-am-ucheck checked>
+                no
+            </label>
+
+        </div>
+        <div class="am-u-sm-6">
+            <h3>3.what kind of alcohol?</h3>
+            <label class="am-radio">
+                <input type="radio" name="radio6" value="S" data-am-ucheck>
+                strong
+            </label>
+            <label class="am-radio">
+                <input type="radio" name="radio6" value="L" data-am-ucheck>
+                light
+            </label>
+            <label class="am-radio">
+                <input type="radio" name="radio6" value="N" data-am-ucheck checked>
+                no
+            </label>
+
+        </div>
+    <button type="button" class="am-btn am-btn-secondary" style="margin-left: 40%" onclick="newfood()">add new food</button>
+    </div >
+
+<div id="adrecipe"  hidden="hidden">
+    <h2 id="recipetitle">Add a new recipe</h2>
+    <div class="am-form-group-lg">
+        <label>what's name of new recipe?</label>
+        <input type="text" class="" id="recipe" placeholder="name your recipe " required>
+    </div>
+    <div class="am-g">
+
+
+        <select multiple placeholder="choose foods" data-am-selected="{btnWidth: '90%',
+        btnSize: 'sm', btnStyle: 'success',maxHeight: 500,searchBox: 1}"  id="food-new-recipe" minchecked="1"  >
+            <optgroup label="alcohol" id="add-recipe-select-alcohol">
+
+            </optgroup>
+            <optgroup label="juice" id="add-recipe-select-juice">
+
+            </optgroup>
+            <optgroup label="other" id="add-recipe-select-other">
+
+            </optgroup>
+        </select>
+    </div>
+    <div id="recipe-food-list"> food-lists：</div>
+    <div id="foodtable">
+        <table class="am-table am-table-bordered " style="width: 90%">
+            <thead>
+            <tr>
+                <th>food</th>
+                <th>unit</th>
+                <th>quantity</th>
+            </tr>
+            </thead>
+            <tbody id="new-recipe-food-tr">
+            <tr >
+                <td>food</td>
+                <td> <input type="text" class="" placeholder="input unit"></td>
+                <td><input type="text" class="" placeholder="input quantity"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div >
+        <div class="am-u-sm-12">
+            <h3>how to prepare?</h3>
+            <div class="am-form-group-lg">
+                <input type="text" class="" id="preperation" placeholder="input step" style="width: 70%">
+                <button type="button" class="am-btn am-btn-sm am-round" id="add-step">add step</button>
+            </div>
+        </div>
+        <div class="am-u-sm-12">
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+
+            <div class="am-list-news-hd am-cf">
+
+                <a class="">
+                    <h2>preparation</h2>
+                </a>
+            </div>
+
+            <div class="am-list-news-bd">
+                <ul class="am-list" id="preperation-lists">
+
+                    <!--<li class="am-g">step1,you need a lot of water!<span class="am-icon-times" onclick="removeself(this)"></span></li>-->
+
+                </ul>
+            </div>
+            <!--<div class="am-list-news-ft">-->
+                <!--<a class="am-list-news-more am-btn am-btn-default " href="">clearall</a>-->
+            <!--</div>-->
+
+        </div>
+        </div>
+       <button type="button" class="am-btn am-btn-secondary" style="margin-left: 40%" onclick="addnewrecipe()">add new recipe</button>
+    </div>
+</div>
+
+<!--<div class="am-g">-->
+    <!--<div class="am-u-md-6">-->
+        <!--<div class="am-panel am-panel-default">-->
+            <!--<div class="am-panel-hd am-cf" >文件上传</div>-->
+            <!--<div class="am-panel-bd am-collapse am-in" >-->
+                <!--<table class="am-table am-table-bordered " style="width: 90%">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>food</th>-->
+                    <!--<th>unit</th>-->
+                    <!--<th>quantity</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody >-->
+                <!--<tr >-->
+                    <!--<td>food</td>-->
+                    <!--<td> </td>-->
+                    <!--<td> </td>-->
+                <!--</tr>-->
+
+                <!--</tbody>-->
+            <!--</table>-->
+                <!--<div data-am-widget="list_news" class="am-list-news am-list-news-default" >-->
+
+                    <!--<div class="am-list-news-hd am-cf">-->
+
+                        <!--<a class="">-->
+                            <!--<h2>preparation</h2>-->
+                        <!--</a>-->
+                    <!--</div>-->
+
+                    <!--<div class="am-list-news-bd">-->
+                        <!--<ul class="am-list" >-->
+
+                            <!--<li class="am-g">step1,you need a lot of water!</li>-->
+
+                        <!--</ul>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
